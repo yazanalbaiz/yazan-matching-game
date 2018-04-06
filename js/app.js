@@ -18,6 +18,10 @@ const iconsArray = [
     '<i class="fas fa-leaf"></i>'
 ];
 
+const initCards = document.querySelectorAll('.game-card');
+
+let matches = 0;
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -33,8 +37,37 @@ function shuffle(array) {
     return array;
 }
 
+//Reveals a card and checks if it matches a revealed or not
+function revealAndCheck(e) {
+    const target = e.target;
 
-document.addEventListener('click', (e) => {
-    if(e.target.getAttribute('class') === 'game-card-hidden')
-        e.target.setAttribute('class', 'game-card-revealed');
+    const iconType = target.getAttribute('class').substr(17);
+
+    if(target.getAttribute('class') === 'game-card hidden '+iconType )
+        target.setAttribute('class', 'game-card revealed '+iconType );
+
+    target.firstElementChild.style.display = 'block';
+
+    for(card of initCards) {
+        if(card !== target && card.getAttribute('class') === 'game-card revealed ' + iconType){
+            card.setAttribute('class', 'game-card true'+ ' ' + iconType);
+            target.setAttribute('class', 'game-card true'+ ' ' + iconType);
+            matches++;
+        }
+    }
+
+}
+
+//Embeds the icons in the cards until revealed
+document.addEventListener('DOMContentLoaded', (e) => {
+    shuffle(iconsArray);
+    for(card of initCards) {
+        let icon = iconsArray.pop();
+        card.innerHTML = icon;
+        icon = card.firstElementChild;
+        icon.style.display = 'none';
+        card.setAttribute('class', card.getAttribute('class') + ' ' + icon.getAttribute('class').substr(7));
+    }
 });
+//Flips card and reveals icon
+document.addEventListener('click', revealAndCheck);
