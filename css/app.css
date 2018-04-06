@@ -9,44 +9,29 @@
 
 }
 
-.game-card-hidden {
+.game-card {
+    height: 125px;
+    width: 125px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    margin: 1%;
+    padding: 6.2%;
+}
+
+.hidden {
     background: #c0c3c6;
-    height: 125px;
-    width: 125px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    margin: 1%;
-    padding: 6.2%;
 }
 
-.game-card-revealed {
+.revealed {
     background: #4b69c1;
-    height: 125px;
-    width: 125px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    margin: 1%;
-    padding: 6.2%;
 }
 
-.game-card-true {
+.true {
     background: #51cc8a;
-    height: 125px;
-    width: 125px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    margin: 1%;
-    padding: 6.2%;
 }
 
-.game-card-false {
+.false {
     background: #ad1b1b;
-    height: 125px;
-    width: 125px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    margin: 1%;
-    padding: 6.2%;
 }
 
 .cards {
