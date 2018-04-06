@@ -1,0 +1,19 @@
+.container {
+    padding: 1%;
+}
+
+.board {
+    background: linear-gradient(160deg, #262728 0%, #666970 100%);
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.game-card {
+    background: white;
+    height: 125px;
+    width: 125px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    margin: 0.5em 0.05em 0.5em 0.05em;
+}
+
