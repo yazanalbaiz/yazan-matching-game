@@ -9,11 +9,16 @@
 }
 
 .game-card {
-    background: white;
+    background: #c0c3c6;
     height: 125px;
     width: 125px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    margin: 0.5em 0.05em 0.5em 0.05em;
+    margin: 1%;
 }
 
+.cards {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 25%;
+}
