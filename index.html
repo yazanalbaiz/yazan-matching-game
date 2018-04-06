@@ -10,16 +10,22 @@
     </head>
 
     <body>
+        <!-- Use of a main tag for semantics -->
         <main class="container">
+            <!-- header is row insted of div -->
             <header class="row">
+                <!-- h1 is column instead of div -->
                 <h1 class="col-md-4 mx-auto">Memory Game</h1>
             </header>
 
-            <div class="row info">
-
+            <div class="row info mx-auto">
+                <div class="col-sm-4 stars"></div>
+                <div class="col-sm-4 timer"></div>
+                <div class="col-sm-4 restart"></div>
             </div>
 
             <section class="row">
+                <!-- Nested container for ease of programming -->
                 <div class="container board">
                     <div class="row cards">
                         <div class="game-card"></div>
