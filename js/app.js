@@ -85,8 +85,6 @@ function revealAndCheck(e) {
 }
 //Fils the board with random cards
 function addRandomIcons() {
-    timer = 0;
-    upTimer();
     moves = 0;
     moveChecker();
     shuffle(iconsArray);
@@ -151,10 +149,10 @@ function upTimer() {
 
 
 //Embeds the icons in the cards until revealed
-document.addEventListener('DOMContentLoaded', addRandomIcons);
+document.addEventListener('DOMContentLoaded',() => {addRandomIcons(); timer = 0; upTimer();} );
 
 //Flips card and reveals icon
 board.addEventListener('click', revealAndCheck);
 //Reshuffles the cards and restarts the game
-restartButton.addEventListener('click',addRandomIcons);
+restartButton.addEventListener('click',() => {addRandomIcons(); timer = 0;});
 
