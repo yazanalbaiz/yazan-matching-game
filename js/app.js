@@ -4,8 +4,11 @@ const starFill = document.createElement('i');
 const board = document.getElementById('board');
 
 let starsDiv = document.getElementById('stars');
+let timerDiv = document.getElementById('timer');
 let matches = 0;
 let moves = 0;
+
+let timer = 0;
 
 let iconsArray = [
     '<i class="fab fa-firefox"></i>',
@@ -42,7 +45,7 @@ function shuffle(array) {
 
     return array;
 }
-
+//Penalty for extra moves
 function moveChecker() {
     if(moves > 16 && moves <= 28){
         starsDiv.children[2].setAttribute('data-prefix', 'far');
@@ -80,8 +83,10 @@ function revealAndCheck(e) {
     checkMatched(target);
     checkUnmatched(target);
 }
-
+//Fils the board with random cards
 function addRandomIcons() {
+    timer = 0;
+    upTimer();
     moves = 0;
     moveChecker();
     shuffle(iconsArray);
@@ -98,18 +103,18 @@ function addRandomIcons() {
     }
     iconsArray = newArray;
 }
-
+//Hides a passed card
 function hideCards(card) {
         if(card.getAttribute('class').includes('revealed')){
             card.setAttribute('class', card.getAttribute('class').replace(/revealed/gi, 'hidden'));
             card.firstElementChild.style.display = 'none';
         }
-        if(card.getAttribute('class').includes('true')){
-            card.setAttribute('class', card.getAttribute('class').replace(/true/gi, 'hidden'));
+        if(card.getAttribute('class').includes('false')){
+            card.setAttribute('class', card.getAttribute('class').replace(/false/gi, 'hidden'));
             card.firstElementChild.style.display = 'none';
         }
 }
-
+//Checks if the target matches a revealed card then makes them both blue if so
 function checkMatched(target) {
     for(card of initCards) {
         const cardIcon = card.getAttribute('class').substr(17);
@@ -121,27 +126,35 @@ function checkMatched(target) {
         }
     }
 }
-
+//Checks if the target doesn't match a revealed card then makes them both red and flips them
 function checkUnmatched(target) {
     for(card of initCards){
         if(card.getAttribute('class').includes('revealed') && card.getAttribute('class') !== target.getAttribute('class')){
             card.setAttribute('class', card.getAttribute('class').replace(/revealed/gi, 'false'));
             target.setAttribute('class', target.getAttribute('class').replace(/revealed/gi, 'false'));
             setTimeout(() => {
-                target.setAttribute('class', target.getAttribute('class').replace(/false/gi, 'hidden'));
-                card.setAttribute('class', card.getAttribute('class').replace(/false/gi, 'hidden'));
-                target.firstElementChild.style.display = 'none';
-                card.firstElementChild.style.display = 'none';
+                hideCards(target);
+                for(card of initCards){
+                    hideCards(card);
+                }
             }, 500);
         }
     }
 }
+
+function upTimer() {
+    setInterval(() => {
+        timer++;
+        timerDiv.innerHTML = 'Seconds: ' + timer;
+    },1000);
+}
+
 
 //Embeds the icons in the cards until revealed
 document.addEventListener('DOMContentLoaded', addRandomIcons);
 
 //Flips card and reveals icon
 board.addEventListener('click', revealAndCheck);
-
+//Reshuffles the cards and restarts the game
 restartButton.addEventListener('click',addRandomIcons);
 
