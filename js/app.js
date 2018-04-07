@@ -41,22 +41,33 @@ function shuffle(array) {
 function revealAndCheck(e) {
     const target = e.target;
 
-    const iconType = target.getAttribute('class').substr(17);
+    const iconType = e.target.getAttribute('class').substr(17);
 
-    if(target.getAttribute('class') === 'game-card hidden '+iconType )
-        target.setAttribute('class', 'game-card revealed '+iconType );
+    //Checks if the card is unflipped and flips it if so
+    if(target.getAttribute('class').includes('hidden'))
+        target.setAttribute('class', target.getAttribute('class').replace(/hidden/gi, 'revealed'));
 
     target.firstElementChild.style.display = 'block';
 
     for(card of initCards) {
-        if(card !== target && card.getAttribute('class') === 'game-card revealed ' + iconType){
-            card.setAttribute('class', 'game-card true'+ ' ' + iconType);
-            target.setAttribute('class', 'game-card true'+ ' ' + iconType);
+        const cardIcon = card.getAttribute('class').substr(17);
+        if(card !== target && card.getAttribute('class') === target.getAttribute('class')){
+            card.setAttribute('class', card.getAttribute('class').replace(/revealed/gi, 'true'));
+            target.setAttribute('class', target.getAttribute('class').replace(/revealed/gi, 'true'));
             matches++;
+            continue;
         }
+        // else{
+        //     card.setAttribute('class', card.getAttribute('class').replace('revealed', 'hidden'));
+        //     target.setAttribute('class', target.getAttribute('class').replace('revealed', 'hidden'));
+        //     continue;
+        // }
     }
 
+    
 }
+
+
 
 //Embeds the icons in the cards until revealed
 document.addEventListener('DOMContentLoaded', (e) => {
@@ -66,6 +77,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
         card.innerHTML = icon;
         icon = card.firstElementChild;
         icon.style.display = 'none';
+        icon.setAttribute('class', icon.getAttribute('class') + ' fa-2x');
         card.setAttribute('class', card.getAttribute('class') + ' ' + icon.getAttribute('class').substr(7));
     }
 });
