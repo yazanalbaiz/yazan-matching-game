@@ -78,7 +78,7 @@ function revealAndCheck(e) {
     target.firstElementChild.style.display = 'block';
 
     checkMatched(target);
-    
+    checkUnmatched(target);
 }
 
 function addRandomIcons() {
@@ -125,8 +125,14 @@ function checkMatched(target) {
 function checkUnmatched(target) {
     for(card of initCards){
         if(card.getAttribute('class').includes('revealed') && card.getAttribute('class') !== target.getAttribute('class')){
-            hideCards(card);
-            hideCards(target);
+            card.setAttribute('class', card.getAttribute('class').replace(/revealed/gi, 'false'));
+            target.setAttribute('class', target.getAttribute('class').replace(/revealed/gi, 'false'));
+            setTimeout(() => {
+                target.setAttribute('class', target.getAttribute('class').replace(/false/gi, 'hidden'));
+                card.setAttribute('class', card.getAttribute('class').replace(/false/gi, 'hidden'));
+                target.firstElementChild.style.display = 'none';
+                card.firstElementChild.style.display = 'none';
+            }, 500);
         }
     }
 }
