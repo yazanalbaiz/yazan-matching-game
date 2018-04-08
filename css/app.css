@@ -1,3 +1,7 @@
+* {
+    color: #c0c3c6;
+}
+
 .container {
     padding: 1%;
 }
@@ -8,7 +12,9 @@
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
 
 }
-
+body {
+    background: linear-gradient(160deg, #262728 0%, #666970 100%);
+}
 .game-card {
     height: 125px;
     width: 125px;
