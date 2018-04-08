@@ -102,10 +102,10 @@ function addRandomIcons() {
 
     for(card of initCards) {
         let icon = iconsArray.pop();
+        newArray.push(icon);
         card.innerHTML = icon;
         icon = card.firstElementChild;
         icon.setAttribute('class', icon.getAttribute('class') + ' fa-4x');
-        newArray.push(icon);
     }
 
     iconsArray = newArray;
