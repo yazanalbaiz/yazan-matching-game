@@ -21,7 +21,11 @@ body {
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     margin: 1%;
-    padding: 3.8%;
+    padding: 3.5%;
+}
+
+.fa-pied-piper-alt{
+    padding: 3.1%;
 }
 
 .hidden {
