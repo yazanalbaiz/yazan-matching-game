@@ -7,12 +7,14 @@ const closeBtn = document.querySelector('.close-btn');
 const modalRestart = document.getElementById('modal-restart');
 const movesSpan = document.getElementById('moves');
 
+let modalMoves = document.getElementById('modal-moves');
+let modalTime = document.getElementById('modal-time');
 let starsDiv = document.getElementById('stars');
 let timerDiv = document.getElementById('timer');
 let matches = 0;
 let moves = 0;
-
 let timer = 0;
+let lastTime;
 
 let iconsArray = [
     '<i class="fab fa-firefox"></i>',
@@ -81,12 +83,12 @@ function revealAndCheck(e) {
             target.setAttribute('class', target.getAttribute('class').replace(/hidden/gi, 'revealed'));
     
         target.firstElementChild.style.display = 'block';
-    
         checkMatched(target);
         if(matches === 8){
             openModal();
         }
         checkUnmatched(target);
+        showMoves();
     }
 }
 //Fils the board with random cards
@@ -173,6 +175,9 @@ function upTimer() {
 }
 
 function openModal() {
+    lastTime = timer;
+    modalMoves.innerHTML = moves;
+    modalTime.innerHTML = lastTime;
     modal.style.display = 'block';
 }
 
@@ -184,18 +189,35 @@ function showMoves() {
     movesSpan.innerHTML = moves;
 }
 
+function thereIsRevealed(){
+    for(card of initCards){
+        if(card.getAttribute('class').includes('revealed'))
+        return true;
+    }
+    return false;
+}
+
 //Embeds the icons in the cards until revealed
-document.addEventListener('DOMContentLoaded',() => {addRandomIcons(); timer = 0; upTimer();} );
+document.addEventListener('DOMContentLoaded',() => {addRandomIcons();
+    timer = 0;
+    upTimer();
+    showMoves();
+});
 
 //Flips card and reveals icon
 board.addEventListener('click', revealAndCheck);
 //Reshuffles the cards and restarts the game
-restartButton.addEventListener('click',() => {addRandomIcons(); timer = 0;});
+restartButton.addEventListener('click',() => {
+    addRandomIcons(); 
+    showMoves();
+    timer = 0;
+});
 
 closeBtn.addEventListener('click', closeModal);
 
 modalRestart.addEventListener('click', () => {
     closeModal();
     addRandomIcons(); 
+    showMoves();
     timer = 0;
 });
