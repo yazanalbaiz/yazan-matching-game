@@ -4,6 +4,8 @@ const starFill = document.createElement('i');
 const board = document.getElementById('board');
 const modal = document.getElementById('modal');
 const closeBtn = document.querySelector('.close-btn');
+const modalRestart = document.getElementById('modal-restart');
+const movesSpan = document.getElementById('moves');
 
 let starsDiv = document.getElementById('stars');
 let timerDiv = document.getElementById('timer');
@@ -68,25 +70,24 @@ function moveChecker() {
 //Reveals a card and checks if it matches a revealed or not
 function revealAndCheck(e) {
     if(e.target.getAttribute('class').includes('game-card')){
-        moves++;
+        showMoves();
         moveChecker();
+        const target = e.target;
+
+        const iconType = e.target.getAttribute('class').substr(17);
+    
+        //Checks if the card is unflipped and flips it if so
+        if(target.getAttribute('class').includes('hidden'))
+            target.setAttribute('class', target.getAttribute('class').replace(/hidden/gi, 'revealed'));
+    
+        target.firstElementChild.style.display = 'block';
+    
+        checkMatched(target);
+        if(matches === 8){
+            openModal();
+        }
+        checkUnmatched(target);
     }
-
-    const target = e.target;
-
-    const iconType = e.target.getAttribute('class').substr(17);
-
-    //Checks if the card is unflipped and flips it if so
-    if(target.getAttribute('class').includes('hidden'))
-        target.setAttribute('class', target.getAttribute('class').replace(/hidden/gi, 'revealed'));
-
-    target.firstElementChild.style.display = 'block';
-
-    checkMatched(target);
-    if(matches === 8){
-        openModal();
-    }
-    checkUnmatched(target);
 }
 //Fils the board with random cards
 function addRandomIcons() {
@@ -142,6 +143,7 @@ function checkMatched(target) {
             card.setAttribute('class', card.getAttribute('class').replace(/revealed/gi, 'true'));
             target.setAttribute('class', target.getAttribute('class').replace(/revealed/gi, 'true'));
             matches++;
+            moves++;
             break;
         }
     }
@@ -152,6 +154,7 @@ function checkUnmatched(target) {
         if(card.getAttribute('class').includes('revealed') && card.getAttribute('class') !== target.getAttribute('class')){
             card.setAttribute('class', card.getAttribute('class').replace(/revealed/gi, 'false'));
             target.setAttribute('class', target.getAttribute('class').replace(/revealed/gi, 'false'));
+            moves++;
             setTimeout(() => {
                 hideCards(target);
                 for(card of initCards){
@@ -177,6 +180,9 @@ function closeModal() {
     modal.style.display = 'none';
 }
 
+function showMoves() {
+    movesSpan.innerHTML = moves;
+}
 
 //Embeds the icons in the cards until revealed
 document.addEventListener('DOMContentLoaded',() => {addRandomIcons(); timer = 0; upTimer();} );
@@ -187,3 +193,9 @@ board.addEventListener('click', revealAndCheck);
 restartButton.addEventListener('click',() => {addRandomIcons(); timer = 0;});
 
 closeBtn.addEventListener('click', closeModal);
+
+modalRestart.addEventListener('click', () => {
+    closeModal();
+    addRandomIcons(); 
+    timer = 0;
+});
