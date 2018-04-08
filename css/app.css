@@ -88,6 +88,11 @@ body {
     .game-card {
         width: 75px;
         height: 75px;
+        padding: 1.7%;
+    }
+
+    .fa-pied-piper-alt{
+        padding: 1.1%;
     }
 } 
 
@@ -99,6 +104,12 @@ body {
     .game-card {
         width: 50px;
         height: 50px;
+    }
+    .fa-2x  {
+        font-size: 1.5em;
+    }
+    .fa-4x{
+        font-size: 2.4em;
     }
 } 
 
