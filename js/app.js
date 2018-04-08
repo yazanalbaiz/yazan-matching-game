@@ -3,7 +3,7 @@ const restartButton = document.getElementById('restart');
 const starFill = document.createElement('i');
 const board = document.getElementById('board');
 const modal = document.getElementById('modal');
-const closeBtn = document.querySelector('close-btn');
+const closeBtn = document.querySelector('.close-btn');
 
 let starsDiv = document.getElementById('stars');
 let timerDiv = document.getElementById('timer');
@@ -32,9 +32,6 @@ let iconsArray = [
     '<i class="fab fa-reddit-alien"></i>'
 ];
 
-function openModal(){
-    modal.style.display = 'block';
-}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -93,21 +90,38 @@ function revealAndCheck(e) {
 }
 //Fils the board with random cards
 function addRandomIcons() {
+    matches = 0;
     moves = 0;
     moveChecker();
     shuffle(iconsArray);
     let newArray = [];
+
+    for(card of initCards) {
+        card.setAttribute('class', 'game-card revealed');
+    }
+
     for(card of initCards) {
         let icon = iconsArray.pop();
         card.innerHTML = icon;
-        newArray.push(icon);
         icon = card.firstElementChild;
-        icon.style.display = 'none';
-        icon.setAttribute('class', icon.getAttribute('class') + ' fa-2x');
-        card.setAttribute('class', 'game-card hidden ' + icon.getAttribute('class').substr(7));
-        hideCards(card);
+        icon.setAttribute('class', icon.getAttribute('class') + ' fa-4x');
+        newArray.push(icon);
     }
+
     iconsArray = newArray;
+
+    setTimeout(() => {
+        for(card of initCards) {
+            let icon = card.firstElementChild;
+            icon.style.display = 'none';
+            let iconClass = icon.getAttribute('class').split(' ');
+            iconClass[3] = 'fa-2x';
+            icon.setAttribute('class', iconClass[0]+' '+iconClass[1]+' '+iconClass[2]+' '+iconClass[3]);
+            card.setAttribute('class', 'game-card hidden ' + icon.getAttribute('class').substr(7));
+            hideCards(card);
+        }
+    }, 1000);
+    
 }
 //Hides a passed card
 function hideCards(card) {
@@ -155,6 +169,14 @@ function upTimer() {
     },1000);
 }
 
+function openModal() {
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
 
 //Embeds the icons in the cards until revealed
 document.addEventListener('DOMContentLoaded',() => {addRandomIcons(); timer = 0; upTimer();} );
@@ -164,3 +186,4 @@ board.addEventListener('click', revealAndCheck);
 //Reshuffles the cards and restarts the game
 restartButton.addEventListener('click',() => {addRandomIcons(); timer = 0;});
 
+closeBtn.addEventListener('click', closeModal);
