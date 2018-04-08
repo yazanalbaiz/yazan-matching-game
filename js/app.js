@@ -2,6 +2,8 @@ const initCards = document.querySelectorAll('.game-card');
 const restartButton = document.getElementById('restart');
 const starFill = document.createElement('i');
 const board = document.getElementById('board');
+const modal = document.getElementById('modal');
+const closeBtn = document.querySelector('close-btn');
 
 let starsDiv = document.getElementById('stars');
 let timerDiv = document.getElementById('timer');
@@ -30,6 +32,9 @@ let iconsArray = [
     '<i class="fab fa-reddit-alien"></i>'
 ];
 
+function openModal(){
+    modal.style.display = 'block';
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -81,6 +86,9 @@ function revealAndCheck(e) {
     target.firstElementChild.style.display = 'block';
 
     checkMatched(target);
+    if(matches === 8){
+        openModal();
+    }
     checkUnmatched(target);
 }
 //Fils the board with random cards
