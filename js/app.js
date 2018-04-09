@@ -1,3 +1,4 @@
+//Constants
 const initCards = document.querySelectorAll('.game-card');
 const restartButton = document.getElementById('restart');
 const starFill = document.createElement('i');
@@ -7,7 +8,9 @@ const closeBtn = document.querySelector('.close-btn');
 const modalRestart = document.getElementById('modal-restart');
 const movesSpan = document.getElementById('moves');
 const modalStars = document.getElementById('modal-stars');
+/* End of constants */
 
+//Let variables
 let modalMoves = document.getElementById('modal-moves');
 let modalTime = document.getElementById('modal-time');
 let starsDiv = document.getElementById('stars');
@@ -17,7 +20,9 @@ let moves = 0;
 let timer = 0;
 let stars = 3;
 let lastTime;
+/* End of Let variables */
 
+//Array of cards
 let iconsArray = [
     '<i class="fab fa-firefox"></i>',
     '<i class="fab fa-react"></i>',
@@ -53,6 +58,8 @@ function shuffle(array) {
 
     return array;
 }
+/* End of shuffle function */
+
 //Penalty for extra moves
 function moveChecker() {
     if(moves > 16 && moves <= 28){
@@ -74,6 +81,7 @@ function moveChecker() {
         stars = 3;
     }
 }
+/* End of moveChecker function */
 
 //Reveals a card and checks if it matches a revealed or not
 function revealAndCheck(e) {
@@ -97,6 +105,8 @@ function revealAndCheck(e) {
         moveChecker();
     }
 }
+/* End of revealAndCheck funtion */
+
 //Fils the board with random cards
 function addRandomIcons() {
     matches = 0;
@@ -132,6 +142,8 @@ function addRandomIcons() {
     }, 1000);
     
 }
+/* End of addRandomIcons funtion */
+
 //Hides a passed card
 function hideCards(card) {
         if(card.getAttribute('class').includes('revealed')){
@@ -143,6 +155,8 @@ function hideCards(card) {
             card.firstElementChild.style.display = 'none';
         }
 }
+/* End of hideCards funtion */
+
 //Checks if the target matches a revealed card then makes them both blue if so
 function checkMatched(target) {
     for(card of initCards) {
@@ -156,6 +170,8 @@ function checkMatched(target) {
         }
     }
 }
+/* End of checkMatched funtion */
+
 //Checks if the target doesn't match a revealed card then makes them both red and flips them
 function checkUnmatched(target) {
     for(card of initCards){
@@ -172,14 +188,18 @@ function checkUnmatched(target) {
         }
     }
 }
+/* End of checkUnmatched funtion */
 
+//To be called when the timer needs to be updated
 function upTimer() {
     setInterval(() => {
         timer++;
         timerSpan.innerHTML = timer;
     },1000);
 }
+/* End of upTimer funtion */
 
+//Open's the modal
 function openModal() {
     lastTime = timer;
     modalMoves.innerHTML = moves;
@@ -187,15 +207,21 @@ function openModal() {
     modalStars.innerHTML = stars;
     modal.style.display = 'block';
 }
+/* End of openModal funtion */
 
+//Closes the modal
 function closeModal() {
     modal.style.display = 'none';
 }
+/* End of closeModal funtion */
 
+//To be called when a move is made to display the current # of moves 
 function showMoves() {
     movesSpan.innerHTML = moves;
 }
+/* End of showMoves funtion */
 
+//Checks if there is a revealed card on the board
 function thereIsRevealed(){
     for(card of initCards){
         if(card.getAttribute('class').includes('revealed'))
@@ -203,6 +229,7 @@ function thereIsRevealed(){
     }
     return false;
 }
+/* End of thereIsRevealed funtion */
 
 
 //Embeds the icons in the cards until revealed
@@ -214,6 +241,7 @@ document.addEventListener('DOMContentLoaded',() => {addRandomIcons();
 
 //Flips card and reveals icon
 board.addEventListener('click', revealAndCheck);
+
 //Reshuffles the cards and restarts the game
 restartButton.addEventListener('click',() => {
     addRandomIcons(); 
@@ -221,8 +249,10 @@ restartButton.addEventListener('click',() => {
     timer = 0;
 });
 
+//Closes the modal when the 'x' is clicked
 closeBtn.addEventListener('click', closeModal);
 
+//Restarts the game from the modal
 modalRestart.addEventListener('click', () => {
     closeModal();
     addRandomIcons(); 

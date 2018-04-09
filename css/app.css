@@ -1,3 +1,4 @@
+/* General Styles */
 * {
     color: #c0c3c6;
 }
@@ -6,19 +7,23 @@
     padding: 1%;
 }
 
+body {
+    background: linear-gradient(160deg, #262728 0%, #666970 100%);
+}
+
+/* Info Div Styles */
 .info {
     padding-left: 31%
 }
 
+/* Game Board Styles */
 .board {
     background: linear-gradient(160deg, #262728 0%, #666970 100%);
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
 
 }
-body {
-    background: linear-gradient(160deg, #262728 0%, #666970 100%);
-}
+
 .game-card {
     height: 125px;
     width: 125px;
@@ -54,6 +59,52 @@ body {
     padding-left: 25%;
 }
 
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    widows: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #f4f4f4;
+    margin: 20% auto;
+    padding: 20px;
+    width: 70%;
+    height: 50%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 
+    0 7px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    padding-left: 95%;
+}
+
+.close-btn:hover, .close-btn:focus {
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+}
+
+.fa-check-circle {
+    font-size: 500%;
+}
+
+.green-center {
+    text-align: center;
+    color: #28a745;
+}
+
+/* Media Queries */
 @media screen and (max-width: 1199px) and (min-width: 992px){
     .cards {
         padding-left: 21%;
@@ -154,47 +205,3 @@ body {
         font-size: 2.4em;
     }
 } 
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    height: 100%;
-    widows: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background-color: #f4f4f4;
-    margin: 20% auto;
-    padding: 20px;
-    width: 70%;
-    height: 50%;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 
-    0 7px 20px 0 rgba(0, 0, 0, 0.2);
-}
-
-.close-btn {
-    color: #ccc;
-    float: right;
-    font-size: 30px;
-    padding-left: 95%;
-}
-
-.close-btn:hover, .close-btn:focus {
-    cursor: pointer;
-    color: #000;
-    text-decoration: none;
-}
-
-.fa-check-circle {
-    font-size: 500%;
-}
-
-.green-center {
-    text-align: center;
-    color: #28a745;
-}
