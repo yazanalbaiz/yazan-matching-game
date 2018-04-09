@@ -6,6 +6,10 @@
     padding: 1%;
 }
 
+.info {
+    padding-left: 31%
+}
+
 .board {
     background: linear-gradient(160deg, #262728 0%, #666970 100%);
     border-radius: 10px;
@@ -54,11 +58,20 @@ body {
     .cards {
         padding-left: 21%;
     }
+
+    .info {
+        padding-left: 26.96%;
+    }
 }
 
 @media screen and (max-width: 991px) and (min-width: 768px){
     .cards {
         padding-left: 13.5%;
+    }
+
+    .info {
+        padding-left: 29%;
+        font-size: 0.7em;
     }
 }
 @media screen and (max-width: 767px){
@@ -70,12 +83,25 @@ body {
         width: 100px;
         height: 100px;
     }
+
+    .info {
+        font-weight: 700;
+        padding-left: 29%;
+        font-size: 0.5em;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 }
 
  @media screen and (max-width: 575px){
     .container {
         padding-left: 15px;
         padding-right: 15px;
+    }
+
+    .info {
+        font-weight: 100;
+        font-size: 1em;
+        padding-left: 40%;
     }
 } 
 
