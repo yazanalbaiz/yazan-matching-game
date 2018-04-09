@@ -6,6 +6,7 @@ const modal = document.getElementById('modal');
 const closeBtn = document.querySelector('.close-btn');
 const modalRestart = document.getElementById('modal-restart');
 const movesSpan = document.getElementById('moves');
+const modalStars = document.getElementById('modal-stars');
 
 let modalMoves = document.getElementById('modal-moves');
 let modalTime = document.getElementById('modal-time');
@@ -14,6 +15,7 @@ let timerSpan = document.getElementById('timer');
 let matches = 0;
 let moves = 0;
 let timer = 0;
+let stars = 3;
 let lastTime;
 
 let iconsArray = [
@@ -55,12 +57,15 @@ function shuffle(array) {
 function moveChecker() {
     if(moves > 16 && moves <= 28){
         starsDiv.children[2].setAttribute('data-prefix', 'far');
+        stars = 2;
     }
     else if (moves > 28 && moves <= 44 ){
         starsDiv.children[1].setAttribute('data-prefix', 'far');
+        stars = 1;
     }
     else if (moves > 44){
         starsDiv.children[0].setAttribute('data-prefix', 'far');
+        stars = 0;
     }
     else if(moves <= 16){
         starsDiv.children[0].setAttribute('data-prefix', 'fas');
@@ -73,7 +78,6 @@ function moveChecker() {
 function revealAndCheck(e) {
     if(e.target.getAttribute('class').includes('game-card')){
         showMoves();
-        moveChecker();
         const target = e.target;
 
         const iconType = e.target.getAttribute('class').substr(17);
@@ -89,6 +93,7 @@ function revealAndCheck(e) {
         }
         checkUnmatched(target);
         showMoves();
+        moveChecker();
     }
 }
 //Fils the board with random cards
@@ -178,6 +183,7 @@ function openModal() {
     lastTime = timer;
     modalMoves.innerHTML = moves;
     modalTime.innerHTML = lastTime;
+    modalStars.innerHTML = stars;
     modal.style.display = 'block';
 }
 
@@ -196,6 +202,7 @@ function thereIsRevealed(){
     }
     return false;
 }
+
 
 //Embeds the icons in the cards until revealed
 document.addEventListener('DOMContentLoaded',() => {addRandomIcons();
