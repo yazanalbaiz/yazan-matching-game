@@ -124,6 +124,18 @@ body {
     .fa-pied-piper-alt{
         padding: 1.1%;
     }
+
+    .modal-content {
+        font-size: 0.7em;
+    }
+
+    .congrats {
+        font-size: 1.7em;
+    }
+
+    .won {
+        font-size: 1.5em;
+    }
 } 
 
 @media screen and (max-width: 402px){
