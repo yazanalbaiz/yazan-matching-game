@@ -71,6 +71,10 @@ body {
 
     .info {
         padding-left: 29%;
+        font-size: 1.2em;
+    }
+
+    .stars {
         font-size: 0.7em;
     }
 }
