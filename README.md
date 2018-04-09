@@ -20,4 +20,7 @@ Download the repository and run `index.html`.
 ## Dependancies
 Just a browser :)
 
+-----
+## Attribution
 
+- I have used [font awesome](fontawesome.com) Attribution 4.0 International (CC BY 4.0) icons as the faces for the cards and I have modified their sizes.
