@@ -104,6 +104,10 @@ body {
     color: #28a745;
 }
 
+.modal-stats {
+    font-size: 1.7em;
+}
+
 /* Media Queries */
 @media screen and (max-width: 1199px) and (min-width: 992px){
     .cards {
