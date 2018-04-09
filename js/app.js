@@ -1,7 +1,6 @@
 //Constants
 const initCards = document.querySelectorAll('.game-card');
 const restartButton = document.getElementById('restart');
-const starFill = document.createElement('i');
 const board = document.getElementById('board');
 const modal = document.getElementById('modal');
 const closeBtn = document.querySelector('.close-btn');
@@ -88,8 +87,6 @@ function revealAndCheck(e) {
     if(e.target.getAttribute('class').includes('game-card')){
         showMoves();
         const target = e.target;
-
-        const iconType = e.target.getAttribute('class').substr(17);
     
         //Checks if the card is unflipped and flips it if so
         if(target.getAttribute('class').includes('hidden'))
@@ -115,11 +112,11 @@ function addRandomIcons() {
     shuffle(iconsArray);
     let newArray = [];
 
-    for(card of initCards) {
+    for(let card of initCards) {
         card.setAttribute('class', 'game-card revealed');
     }
 
-    for(card of initCards) {
+    for(let card of initCards) {
         let icon = iconsArray.pop();
         newArray.push(icon);
         card.innerHTML = icon;
@@ -130,7 +127,7 @@ function addRandomIcons() {
     iconsArray = newArray;
 
     setTimeout(() => {
-        for(card of initCards) {
+        for(let card of initCards) {
             let icon = card.firstElementChild;
             icon.style.display = 'none';
             let iconClass = icon.getAttribute('class').split(' ');
@@ -159,8 +156,7 @@ function hideCards(card) {
 
 //Checks if the target matches a revealed card then makes them both blue if so
 function checkMatched(target) {
-    for(card of initCards) {
-        const cardIcon = card.getAttribute('class').substr(17);
+    for(let card of initCards) {
         if(card !== target && card.getAttribute('class') === target.getAttribute('class')){
             card.setAttribute('class', card.getAttribute('class').replace(/revealed/gi, 'true'));
             target.setAttribute('class', target.getAttribute('class').replace(/revealed/gi, 'true'));
@@ -174,21 +170,23 @@ function checkMatched(target) {
 
 //Checks if the target doesn't match a revealed card then makes them both red and flips them
 function checkUnmatched(target) {
-    for(card of initCards){
+    for(let card of initCards){
         if(card.getAttribute('class').includes('revealed') && card.getAttribute('class') !== target.getAttribute('class')){
             card.setAttribute('class', card.getAttribute('class').replace(/revealed/gi, 'false'));
             target.setAttribute('class', target.getAttribute('class').replace(/revealed/gi, 'false'));
             moves++;
-            setTimeout(() => {
-                hideCards(target);
-                for(card of initCards){
-                    hideCards(card);
-                }
-            }, 500);
+            setTimeout(hideAll(target), 500);
         }
     }
 }
 /* End of checkUnmatched funtion */
+
+function hideAll(target) {
+    hideCards(target);
+    for(let card of initCards){
+        hideCards(card);
+    }
+}
 
 //To be called when the timer needs to be updated
 let timeStart =
@@ -221,17 +219,6 @@ function showMoves() {
     movesSpan.innerHTML = moves;
 }
 /* End of showMoves funtion */
-
-//Checks if there is a revealed card on the board
-function thereIsRevealed(){
-    for(card of initCards){
-        if(card.getAttribute('class').includes('revealed'))
-        return true;
-    }
-    return false;
-}
-/* End of thereIsRevealed funtion */
-
 
 //Embeds the icons in the cards until revealed
 document.addEventListener('DOMContentLoaded',() => {addRandomIcons();
