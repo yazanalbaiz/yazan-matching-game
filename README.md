@@ -18,7 +18,10 @@ Download the repository and run `index.html`.
 
 -----
 ## Dependancies
-Just a browser :)
+- ECMAScript 6  (ES6, ES2015, Harmony, etc...).
+- Vanilla JS.
+- HTML5.
+- CSS3.
 
 -----
 ## Attribution
