@@ -175,18 +175,16 @@ function checkUnmatched(target) {
             card.setAttribute('class', card.getAttribute('class').replace(/revealed/gi, 'false'));
             target.setAttribute('class', target.getAttribute('class').replace(/revealed/gi, 'false'));
             moves++;
-            setTimeout(hideAll(target), 500);
+            setTimeout(() => {
+                hideCards(target);
+                for(let card of initCards){
+                    hideCards(card);
+                }
+            }, 500);
         }
     }
 }
 /* End of checkUnmatched funtion */
-
-function hideAll(target) {
-    hideCards(target);
-    for(let card of initCards){
-        hideCards(card);
-    }
-}
 
 //To be called when the timer needs to be updated
 let timeStart =
