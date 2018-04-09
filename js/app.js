@@ -191,16 +191,17 @@ function checkUnmatched(target) {
 /* End of checkUnmatched funtion */
 
 //To be called when the timer needs to be updated
-function upTimer() {
+let timeStart =
     setInterval(() => {
         timer++;
         timerSpan.innerHTML = timer;
-    },1000);
-}
+    },1000)
+;
 /* End of upTimer funtion */
 
 //Open's the modal
 function openModal() {
+    clearInterval(timeStart);
     lastTime = timer;
     modalMoves.innerHTML = moves;
     modalTime.innerHTML = lastTime;
@@ -235,7 +236,6 @@ function thereIsRevealed(){
 //Embeds the icons in the cards until revealed
 document.addEventListener('DOMContentLoaded',() => {addRandomIcons();
     timer = 0;
-    upTimer();
     showMoves();
 });
 
@@ -258,4 +258,10 @@ modalRestart.addEventListener('click', () => {
     addRandomIcons(); 
     showMoves();
     timer = 0;
+    timeStart =
+    setInterval(() => {
+        timer++;
+        timerSpan.innerHTML = timer;
+    },1000)
+;
 });
