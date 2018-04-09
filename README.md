@@ -10,5 +10,14 @@ I'll also be using Bootstrap's grid system to help with responsiveness.
 Download the repository and run `index.html`.
 
 -----
+## How to play :
+- Load the page.
+- Wait for the cards to hide.
+- Click on a card to reveal.
+- Click on another card to see if they match.
+
+-----
+## Dependancies
+Just a browser :)
 
 
