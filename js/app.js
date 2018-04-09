@@ -71,6 +71,7 @@ function moveChecker() {
         starsDiv.children[0].setAttribute('data-prefix', 'fas');
         starsDiv.children[1].setAttribute('data-prefix', 'fas');
         starsDiv.children[2].setAttribute('data-prefix', 'fas');
+        stars = 3;
     }
 }
 
