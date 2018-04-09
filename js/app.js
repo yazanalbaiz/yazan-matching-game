@@ -10,7 +10,7 @@ const movesSpan = document.getElementById('moves');
 let modalMoves = document.getElementById('modal-moves');
 let modalTime = document.getElementById('modal-time');
 let starsDiv = document.getElementById('stars');
-let timerDiv = document.getElementById('timer');
+let timerSpan = document.getElementById('timer');
 let matches = 0;
 let moves = 0;
 let timer = 0;
@@ -170,7 +170,7 @@ function checkUnmatched(target) {
 function upTimer() {
     setInterval(() => {
         timer++;
-        timerDiv.innerHTML = 'Seconds: ' + timer;
+        timerSpan.innerHTML = timer;
     },1000);
 }
 
